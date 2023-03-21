@@ -1,4 +1,4 @@
-version: 3.8
+version: "3.8"
 services: 
   pgadmin:
     container_name: pgadmin
@@ -13,22 +13,33 @@ services:
   postgres:
     container_name: postgres
     image: postgres
+    build:
+      context: ./postgres
+      dockerfile: ./Dockerfile
     environment:
+      PGADMIN_DEFAULT_EMAIL: dorian.grasset@etu.umontpellier.fr
+      PGADMIN_DEFAULT_PASSWORD: pgadmin
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: postgres
     ports:
     - 8181:5432
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
+      - ./postgres/data:/docker-entrypoint-initdb.d/
   web90:
     image: php:8.2-apache
     container_name: web90
+    build:
+      context: ./web90
+      dockerfile: ./Dockerfile
     volumes:
       - ./web90/html:/var/www/html
     ports:
       - 89:80
     depends_on:
-      - phpmyadmin
-      - mysql
+      - pgadmin
+      - postgres
     links:
-      - phpmyadmin
-      - mysql
+      - pgadmin
+      - postgres
