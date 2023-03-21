@@ -1,0 +1,44 @@
+version: 3.8
+services: 
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+      - postgres
+    ports: 
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dorian.grasset@etu.umontpellier.fr
+      PGADMIN_DEFAULT_PASSWORD: pgadmin
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      ports:
+      - "8181:5432"
+  web90:
+    image: php:8.2-apache
+    container_name: web90
+    volumes:
+      - ./web90/html:/var/www/html
+    ports:
+      - 89:80
+    depends_on:
+      - phpmyadmin
+      - mysql
+    links:
+      - phpmyadmin
+      - mysql
+  minetest:
+    image: lscr.io/linuxserver/minetest:latest
+    container_name: ${PROJECT_NAME}minetest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - CLI_ARGS=--gameid minetest --port 25565
+    ports:
+      - 25565:25565/udp
+    restart: unless-stopped
