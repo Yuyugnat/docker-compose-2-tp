@@ -24,9 +24,9 @@ services:
       POSTGRES_DB: postgres
     ports:
     - 8181:5432
-    volumes:
-      - ./postgres/data:/var/lib/postgresql/data
-      - ./postgres/data:/docker-entrypoint-initdb.d/
+    # volumes:
+    #   - ./postgres/data:/var/lib/postgresql/data
+    #   - ./postgres/data:/docker-entrypoint-initdb.d/
   web90:
     image: php:8.2-apache
     container_name: web90
