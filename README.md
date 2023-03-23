@@ -68,6 +68,10 @@ Ces fichiers, positionnés dans le dossier source, seront directement reliés à
 
 Vous pouvez aussi trouver ces données dans votre fichier : ```docker-compose.yml```.
 
+### III. Lancer la SAE
+
+Sur un navigateur rentrez l'adresse suivante : ```http://localhost:89/web/frontController.php```
+
 ### III. Lancer le serveur apache
 
 Lancer votre navigateur et rentrez l'URL suivante : ```http://localhost:{portapache}/``` ici le {portapache} = 89.
