@@ -19,7 +19,7 @@ class DatabaseConnection {
         $login = Conf::getLogin();
         $password = Conf::getPassword();
 
-        $this->pdo = new PDO("pgsql:host=$hostname;dbname=$database_name;port=8181", $login, $password);
+        $this->pdo = new PDO("mysql:host=$hostname;dbname=$database_name", $login, $password);
 
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
