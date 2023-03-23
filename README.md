@@ -36,7 +36,7 @@ Cloner normalement de dépôt git.
 
 Le "compose" aura un nom associé à celui du dossier dans lequel la commande a été faites. Ici, on aura un dossier nommé "docker".
 
-Une fois le dépôt cloné dans un dossier, ouvrez un terminal dans celui-ci et tapez la commande suivante : ```$ docker compose up -d```
+Une fois le dépôt cloné dans un dossier, ouvrez un terminal dans celui-ci et tapez les commandes suivantes : ```$docker compose build``` puis ```$ docker compose up -d```
 
 Vous pourrez par la suite voir que votre "compose" a été créé et bien mis en route avec la commande : ```$ docker compose ls```
 
